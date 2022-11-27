@@ -1,12 +1,25 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import logo from '../../usedlapi-logo.png';
+import useJwtToken from '../CustomHooks/useJwtToken/useJwtToken';
+import Spinner from '../../Shared/Spinner/Spinner';
 
 
 const Register = () => {
     const { createUser, loading } = useContext(AuthContext);
+    const [newUserEmail, setNewUserEmail] = useState('')
+    const [token] = useJwtToken(newUserEmail);
+    const navigate = useNavigate();
+
+    if (loading) {
+        <Spinner></Spinner>
+    }
+
+    if (token) {
+        navigate('/');
+    }
 
     const handleRegister = event => {
         event.preventDefault();
@@ -43,7 +56,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                // setCreatedUserEmail(email);
+                setNewUserEmail(user.email);
             })
     }
 
