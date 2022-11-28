@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useAdminCheck from '../../Pages/CustomHooks/useAdminCheck/useAdminCheck';
+import useSellerCheck from '../../Pages/CustomHooks/useSellerCheck/useSellerCheck';
 import Header from '../../Shared/Header/Header';
 
 const Dashboard = () => {
+
+    const { user } = useContext(AuthContext);
+    const [adminCheck] = useAdminCheck(user?.email);
+    const [sellerCheck] = useSellerCheck(user?.email);
+
+    console.log(user);
+
     return (
         <div>
             <Header></Header>
@@ -25,20 +35,20 @@ const Dashboard = () => {
                                 <nav className="flex-1 space-y-1 bg-purple-500">
                                     <ul>
                                         <li>
-                                            <p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
+                                            <Link to='/dashboard/allsellers'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                                 </svg>
                                                 <span className="ml-4">All Sellers</span>
-                                            </p>
+                                            </p></Link>
                                         </li>
                                         <li>
-                                            <p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
+                                            <Link to='/dashboard/allbuyers'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                                 </svg>
                                                 <span className="ml-4">All Buyers</span>
-                                            </p>
+                                            </p></Link>
                                         </li>
                                     </ul>
                                     <ul>
@@ -51,7 +61,7 @@ const Dashboard = () => {
                                             </p></Link>
                                         </li>
                                         <li>
-                                            <Link to='/dashboard'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
+                                            <Link to='/dashboard/myproducts'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                                 </svg>
@@ -59,13 +69,13 @@ const Dashboard = () => {
                                             </p></Link>
                                         </li>
                                         <li>
-                                            <p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
+                                            <Link to='/dashboard/addaproduct'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                                                 </svg>
                                                 <span className="ml-4"> Add A Product</span>
-                                            </p>
+                                            </p></Link>
                                         </li>
                                     </ul>
                                 </nav>
