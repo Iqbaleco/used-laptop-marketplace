@@ -56,7 +56,7 @@ const Dashboard = () => {
                                     {
                                         sellerCheck && <ul>
                                             <li>
-                                                <Link to='/dashboard/myproducts'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
+                                                <Link to={`/dashboard/myproducts/${user?.email}`}><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                                     </svg>

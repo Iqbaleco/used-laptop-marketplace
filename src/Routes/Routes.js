@@ -64,8 +64,9 @@ const router = createBrowserRouter([
                 element: <SellerRoute><AddAProduct></AddAProduct></SellerRoute>
             },
             {
-                path: '/dashboard/myproducts',
-                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+                path: '/dashboard/myproducts/:email',
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/laptopcollection/${params.email}`)
             },
         ]
     }

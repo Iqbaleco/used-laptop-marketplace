@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingleLaptop = ({ singleLapi, setBookingData }) => {
-    const { _id, name, location, resale_price, original_price, years_of_use, time_of_post, seller_name, img, brand } = singleLapi;
+    const { _id, name, location, resale_price, original_price, year_of_purchage, time_of_post, seller_name, img, brand } = singleLapi;
     return (
         <div>
             <section>
@@ -26,7 +26,7 @@ const SingleLaptop = ({ singleLapi, setBookingData }) => {
                                 <ul className="steps steps-vertical">
                                     <li className="step step-primary">Seller: {seller_name}</li>
                                     <li className="step step-primary">Location: {location}</li>
-                                    <li className="step step-primary">Years of use: {years_of_use}</li>
+                                    <li className="step step-primary">Years of use: {year_of_purchage}</li>
                                     <li className="step step-primary">Posted on: {time_of_post}</li>
                                     <li className="step step-primary">Original Price: {original_price} TK</li>
                                     <li className="step step-primary">Resale Price: {resale_price} TK</li>
