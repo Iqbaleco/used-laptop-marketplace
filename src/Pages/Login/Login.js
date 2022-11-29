@@ -73,6 +73,35 @@ const Login = () => {
             })
     }
 
+    // const handleGoogleLogin = () => {
+    //     googleLoginProvider(googleProvider)
+    //         .then(result => {
+    //             console.log(result.user);
+    //             const name = result.user.displayName;
+    //             const email = result.user.email;
+    //             const role = "Buyer";
+    //             // const user = {  email }
+    //             saveNewUser(email);
+    //         }).catch(error => console.error(error))
+    // }
+
+    // const saveNewUser = (email) => {
+    //     // const uEmail = user.email;
+    //     fetch(`http://localhost:5000/users/${email}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(email)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             localStorage.setItem('accessToken', data.token);
+    //             toast.success('User Logged in Successfully')
+    //         })
+    // }
+
+
     return (
         <div>
             <section>

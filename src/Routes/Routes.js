@@ -8,6 +8,7 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import Main from "../Layout/Main/Main";
 import Blog from "../Pages/Blog/Blog";
 import Home from "../Pages/Home/Home";
+import LaptopCollection from "../Pages/LaptopCollection/LaptopCollection";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import AdminRoute from "./AdminRoute/AdminRoute";
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/laptopcollection/:brand',
+                element: <PrivateRoute><LaptopCollection></LaptopCollection></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/laptopcollection/${params.brand}`)
             }
         ]
     },
