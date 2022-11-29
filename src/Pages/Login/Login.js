@@ -33,7 +33,7 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+
 
         login(email, password)
             .then(result => {
@@ -48,9 +48,29 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleLoginProvider(googleProvider)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                console.log(result.user);
+                const name = result.user.displayName;
+                const email = result.user.email;
+                const role = "Buyer";
+                const user = { name, email, role }
+                saveNewUser(user);
             }).catch(error => console.error(error))
+    }
+
+    const saveNewUser = (user) => {
+        const uEmail = user.email;
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setLoginUserEmail(uEmail);
+                toast.success('User Logged in Successfully')
+            })
     }
 
     return (
