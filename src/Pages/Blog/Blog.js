@@ -1,9 +1,31 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Spinner from '../../Shared/Spinner/Spinner';
+import Post from './Post';
 
 const Blog = () => {
+
+    const { data: questions, isLoading } = useQuery({
+        queryKey: ['blog'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/blog');
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    if (isLoading) {
+        return <Spinner></Spinner>
+    }
+
     return (
         <div>
-            <h2>This is blog</h2>
+            {
+                questions?.map(post => <Post
+                    key={post._id}
+                    post={post}
+                ></Post>)
+            }
         </div>
     );
 };
