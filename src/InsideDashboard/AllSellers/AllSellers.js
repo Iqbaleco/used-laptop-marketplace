@@ -13,7 +13,6 @@ const AllSellers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Status</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -24,7 +23,6 @@ const AllSellers = () => {
                                 <td>{singleSeller.name}</td>
                                 <td>{singleSeller.email}</td>
                                 <td>{singleSeller.role}</td>
-                                <td><button className="btn btn-sm btn-secondary">Available</button></td>
                                 <td><button className="btn btn-sm btn-secondary">Delete</button></td>
                             </tr>)
                         }
