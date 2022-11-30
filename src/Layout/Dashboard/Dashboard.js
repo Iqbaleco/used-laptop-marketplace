@@ -11,8 +11,6 @@ const Dashboard = () => {
     const [adminCheck] = useAdminCheck(user?.email);
     const [sellerCheck] = useSellerCheck(user?.email);
 
-    console.log(user);
-
     return (
         <div>
             <Header></Header>
@@ -36,7 +34,7 @@ const Dashboard = () => {
                                     {
                                         adminCheck && <ul>
                                             <li>
-                                                <Link to='/dashboard/allsellers'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
+                                                <Link to='/dashboard/allsellers/Seller'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                                     </svg>
@@ -44,7 +42,7 @@ const Dashboard = () => {
                                                 </p></Link>
                                             </li>
                                             <li>
-                                                <Link to='/dashboard/allbuyers'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
+                                                <Link to='/dashboard/allbuyers/Buyer'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                                     </svg>
@@ -78,7 +76,7 @@ const Dashboard = () => {
                                         {
                                             (!sellerCheck && !adminCheck) &&
                                             <li>
-                                                <Link to='/dashboard'><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
+                                                <Link to={`/dashboard/myorders/${user?.email}`}><p className="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white transition duration-500 ease-in-out transform border-purple-800 rounded-lg hover:border-purple-800 focus:shadow-outline hover:bg-purple-600" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                                                     </svg>
@@ -92,11 +90,8 @@ const Dashboard = () => {
                             <div className="flex flex-shrink-0 p-4 px-4 bg-purple-600">
                                 <p href="#" className="flex-shrink-0 block w-full group">
                                     <div className="flex items-center">
-                                        <div>
-                                            <img className="inline-block rounded-full h-9 w-9" src="/assets/images/avatar.png" alt="" />
-                                        </div>
                                         <div className="ml-3">
-                                            <p className="text-sm font-medium text-white">Wicked Labs</p>
+                                            <p className="text-sm font-medium text-white">{user?.email}</p>
                                         </div>
                                     </div>
                                 </p>

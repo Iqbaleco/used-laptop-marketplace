@@ -48,16 +48,19 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
             {
-                path: '/dashboard',
-                element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
+                path: '/dashboard/myorders/:email',
+                element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/myorders/${params.email}`)
             },
             {
-                path: '/dashboard/allbuyers',
-                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+                path: '/dashboard/allbuyers/:role',
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/allbuyers/${params.role}`)
             },
             {
-                path: '/dashboard/allsellers',
-                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
+                path: '/dashboard/allsellers/:role',
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/allsellers/${params.role}`)
             },
             {
                 path: '/dashboard/addaproduct',
@@ -66,7 +69,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myproducts/:email',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/laptopcollection/${params.email}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/myproducts/${params.email}`)
             },
         ]
     }
