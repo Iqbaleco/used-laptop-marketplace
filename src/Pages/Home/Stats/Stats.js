@@ -7,7 +7,7 @@ const Stats = () => {
     const { data: stats, isLoading } = useQuery({
         queryKey: ['stats'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/stats');
+            const res = await fetch('https://usedlapi-server-side.vercel.app/stats');
             const data = await res.json();
             return data;
         }

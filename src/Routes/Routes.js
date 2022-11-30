@@ -10,6 +10,7 @@ import Blog from "../Pages/Blog/Blog";
 import Home from "../Pages/Home/Home";
 import LaptopCollection from "../Pages/LaptopCollection/LaptopCollection";
 import Login from "../Pages/Login/Login";
+import NotAvailable from "../Pages/NotAvailable/NotAvailable";
 import Register from "../Pages/Register/Register";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
             {
                 path: '/laptopcollection/:brand',
                 element: <PrivateRoute><LaptopCollection></LaptopCollection></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/laptopcollection/${params.brand}`)
+                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/laptopcollection/${params.brand}`)
+            },
+            {
+                path: '*',
+                element: <NotAvailable></NotAvailable>
             }
         ]
     },
@@ -52,17 +57,17 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders/:email',
                 element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/myorders/${params.email}`)
+                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/dashboard/myorders/${params.email}`)
             },
             {
                 path: '/dashboard/allbuyers/:role',
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/allbuyers/${params.role}`)
+                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/dashboard/allbuyers/${params.role}`)
             },
             {
                 path: '/dashboard/allsellers/:role',
                 element: <AdminRoute><AllSellers></AllSellers></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/allsellers/${params.role}`)
+                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/dashboard/allsellers/${params.role}`)
             },
             {
                 path: '/dashboard/addaproduct',
@@ -71,7 +76,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myproducts/:email',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/dashboard/myproducts/${params.email}`)
+                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/dashboard/myproducts/${params.email}`)
             },
         ]
     }

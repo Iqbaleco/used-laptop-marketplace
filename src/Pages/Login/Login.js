@@ -31,7 +31,7 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 form.reset();
-                fetch(`http://localhost:5000/jwt?email=${email}`)
+                fetch(`https://usedlapi-server-side.vercel.app/jwt?email=${email}`)
                     .then(res => res.json())
                     .then(result => {
                         if (result.accessToken) {
@@ -57,7 +57,7 @@ const Login = () => {
 
     const saveNewUser = (user) => {
         const uEmail = user.email;
-        fetch('http://localhost:5000/users', {
+        fetch('https://usedlapi-server-side.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -66,7 +66,7 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                fetch(`http://localhost:5000/jwt?email=${uEmail}`)
+                fetch(`https://usedlapi-server-side.vercel.app/jwt?email=${uEmail}`)
                     .then(res => res.json())
                     .then(result => {
                         if (result.accessToken) {
@@ -91,7 +91,7 @@ const Login = () => {
 
     // const saveNewUser = (email) => {
     //     // const uEmail = user.email;
-    //     fetch(`http://localhost:5000/users/${email}`, {
+    //     fetch(`https://usedlapi-server-side.vercel.app/users/${email}`, {
     //         method: 'PUT',
     //         headers: {
     //             'content-type': 'application/json'

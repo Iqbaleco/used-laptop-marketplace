@@ -44,7 +44,7 @@ const Register = () => {
     }
 
     const saveNewUser = (user) => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://usedlapi-server-side.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -54,7 +54,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                fetch(`https://usedlapi-server-side.vercel.app/jwt?email=${user.email}`)
                     .then(res => res.json())
                     .then(result => {
                         if (result.accessToken) {

@@ -30,7 +30,7 @@ const AddAProduct = () => {
             seller_name: data.sellername
         }
 
-        fetch('http://localhost:5000/laptopcollection', {
+        fetch('https://usedlapi-server-side.vercel.app/laptopcollection', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
