@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BrandCard from '../BrandCard/BrandCard';
 
 const BrandName = () => {
     const [brands, setBrands] = useState([]);
@@ -11,12 +12,18 @@ const BrandName = () => {
 
     }, [])
     return (
-        <div>
-            <h3>All categories</h3>
-            {
-                brands?.map(brand => <Link to={`laptopcollection/${brand.brand}`}><button key={brand._id} className="btn btn-secondary">{brand.brand}</button></Link>)
+        <div className='grid justify-items-center'>
 
-            }
+            <div class="flex flex-wrap mx-auto md:flex-nowrap p-12">
+                {
+                    brands?.map(brand => <Link to={`laptopcollection/${brand.brand}`}><BrandCard
+                        key={brand._id}
+                        brand={brand}
+                        className="btn btn-secondary"
+                    ></BrandCard></Link>)
+
+                }
+            </div>
         </div>
     );
 };

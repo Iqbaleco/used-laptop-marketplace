@@ -6,7 +6,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Spinner from '../../Shared/Spinner/Spinner';
 
 const AddAProduct = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
     const moment = require('moment');
@@ -26,9 +26,9 @@ const AddAProduct = () => {
             location: data.location,
             time_of_post: moment().format(),
             img: data.img,
-            seller_name: user.displayName
+            sale: false,
+            seller_name: data.sellername
         }
-        console.log(collection);
 
         fetch('http://localhost:5000/laptopcollection', {
             method: 'POST',
@@ -41,7 +41,7 @@ const AddAProduct = () => {
             .then(res => res.json())
             .then(result => {
                 toast.success(`${data.brand} laptop is added successfully`);
-                navigate('/dashboard/myproducts')
+                navigate('/')
             })
     }
 
@@ -65,6 +65,16 @@ const AddAProduct = () => {
                                     </svg>
                                 </span>
                                 <input className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-purple-400 dark:focus:border-purple-300 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Product Name" type="text" {...register("name", {
+                                    required: true
+                                })}></input>
+                            </div>
+                            <div className="relative flex items-center mt-8">
+                                <span className="absolute">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
+                                </span>
+                                <input className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-purple-400 dark:focus:border-purple-300 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Seller Name" type="text" {...register("sellername", {
                                     required: true
                                 })}></input>
                             </div>

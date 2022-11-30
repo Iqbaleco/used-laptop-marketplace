@@ -19,6 +19,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <h2>Error Page</h2>,
         children: [
             {
                 path: '/',
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <Dashboard></Dashboard>,
+        errorElement: <h2>Error Page</h2>,
         children: [
             {
                 path: '/dashboard/myorders/:email',

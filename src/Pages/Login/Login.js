@@ -1,11 +1,10 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Spinner from '../../Shared/Spinner/Spinner';
 import logo from '../../usedlapi-logo.png';
-import useJwtToken from '../CustomHooks/useJwtToken/useJwtToken';
 
 
 const Login = () => {
@@ -15,17 +14,11 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
-    const [loginUserEmail, setLoginUserEmail] = useState('')
-    const [token] = useJwtToken(loginUserEmail);
 
     const from = location?.state?.from?.pathname || '/'
 
     if (loading) {
         return <Spinner></Spinner>
-    }
-
-    if (token) {
-        navigate(from, { replace: true });
     }
 
     const handleLogin = event => {
@@ -38,7 +31,14 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 form.reset();
-                setLoginUserEmail(email)
+                fetch(`http://localhost:5000/jwt?email=${email}`)
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.accessToken) {
+                            localStorage.setItem('accessToken', result.accessToken);
+                            navigate(from, { replace: true });
+                        }
+                    });
                 toast.success('User Logged in Successfully')
             }).then(err => console.error(err))
     };
@@ -66,7 +66,13 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setLoginUserEmail(uEmail);
+                fetch(`http://localhost:5000/jwt?email=${uEmail}`)
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.accessToken) {
+                            localStorage.setItem('accessToken', result.accessToken);
+                        }
+                    });
                 toast.success('User Logged in Successfully')
             })
     }

@@ -3,14 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import logo from '../../usedlapi-logo.png';
-import useJwtToken from '../CustomHooks/useJwtToken/useJwtToken';
 import Spinner from '../../Shared/Spinner/Spinner';
 
 
 const Register = () => {
     const { createUser, loading } = useContext(AuthContext);
-    const [newUserEmail, setNewUserEmail] = useState('')
-    const [token] = useJwtToken(newUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -21,9 +18,6 @@ const Register = () => {
         <Spinner></Spinner>
     }
 
-    if (token) {
-        navigate(from, { replace: true });
-    }
 
     const handleRegister = event => {
         event.preventDefault();
@@ -60,7 +54,14 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setNewUserEmail(user.email);
+                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.accessToken) {
+                            localStorage.setItem('accessToken', result.accessToken);
+                            navigate(from, { replace: true });
+                        }
+                    });
             })
     }
 
