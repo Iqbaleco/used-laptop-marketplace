@@ -11,3 +11,7 @@
 
 
 **Live Site Link:** https://used-lapi.web.app/
+
+adminEmail: iqbal@eco.com
+
+adminPassword: Admin@12
