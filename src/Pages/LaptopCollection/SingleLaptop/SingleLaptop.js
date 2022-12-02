@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingleLaptop = ({ singleLapi, setBookingData }) => {
-    const { _id, name, location, resale_price, original_price, year_of_purchage, time_of_post, seller_name, img, brand } = singleLapi;
+    const { name, location, resale_price, original_price, purchageyear, time_of_post, seller_name, img, brand, description } = singleLapi;
     return (
         <div>
             <section>
@@ -22,16 +22,18 @@ const SingleLaptop = ({ singleLapi, setBookingData }) => {
                         <div class="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-1/2 lg:pl-6 xl:pl-24 md:mb-0 xl:mt-0">
                             <span class="mb-8 text-xs font-bold tracking-widest text-blue-600 uppercase"> {brand} </span>
                             <h1 class="mb-8 text-4xl font-bold leading-none tracking-tighter text-neutral-600 md:text-7xl lg:text-5xl">{name}</h1>
-                            <p class="mb-8 text-base leading-relaxed text-left text-gray-500">
+                            <div class="mb-8 text-base leading-relaxed text-left text-gray-500">
                                 <ul className="steps steps-vertical">
                                     <li className="step step-primary">Seller: {seller_name}</li>
-                                    <li className="step step-primary">Location: {location}</li>
-                                    <li className="step step-primary">Years of use: {year_of_purchage}</li>
+                                    <li className="step step-primary">Location:
+                                        {location}</li>
+                                    <li className="step step-primary">Purchage Year: {purchageyear}</li>
                                     <li className="step step-primary">Posted on: {time_of_post}</li>
                                     <li className="step step-primary">Original Price: {original_price} TK</li>
                                     <li className="step step-primary">Resale Price: {resale_price} TK</li>
                                 </ul>
-                            </p>
+                                <p>{description}</p>
+                            </div>
                             <div class="mt-0 lg:mt-6 max-w-7xl sm:flex">
                                 <div class="mt-3 rounded-lg sm:mt-0">
                                     <button onClick={() => setBookingData(singleLapi)}>

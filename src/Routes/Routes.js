@@ -61,13 +61,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allbuyers/:role',
-                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>,
-                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/dashboard/allbuyers/${params.role}`)
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/allsellers/:role',
-                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>,
-                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/dashboard/allsellers/${params.role}`)
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/addaproduct',
@@ -75,8 +73,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myproducts/:email',
-                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>,
-                loader: ({ params }) => fetch(`https://usedlapi-server-side.vercel.app/dashboard/myproducts/${params.email}`)
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
         ]
     }
