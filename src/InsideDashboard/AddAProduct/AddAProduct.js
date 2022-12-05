@@ -41,7 +41,7 @@ const AddAProduct = () => {
             .then(res => res.json())
             .then(result => {
                 toast.success(`${data.brand} laptop is added successfully`);
-                navigate('/')
+                navigate(`/dashboard/myproducts/${user?.email}`)
             })
     }
 
